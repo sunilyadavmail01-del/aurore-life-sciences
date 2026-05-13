@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /products/
+Allow: /intermediates/
+Allow: /insights/
+Allow: /facilities/
+Allow: /therapy-areas/
+Allow: /markets/
+Disallow: /admin
+Disallow: /tmp
+Sitemap: https://aurorels.com/sitemap.xml
