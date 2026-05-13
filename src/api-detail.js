@@ -16,7 +16,7 @@ if (!product) {
         <div class="shell">
           <span class="eyebrow">API library</span>
           <h1>API page not found</h1>
-          <p>The requested molecule page is not available in this mock yet. Return to the portfolio to browse the available API detail pages.</p>
+          <p>The requested molecule page is not available yet. Return to the portfolio to browse the available API detail pages.</p>
           <a class="btn btn-secondary" href="/#products">Back to products</a>
         </div>
       </section>

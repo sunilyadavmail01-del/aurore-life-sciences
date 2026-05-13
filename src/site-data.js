@@ -245,7 +245,7 @@ const rawProducts = [
     highlights: [
       "Regional filing diversity",
       "Strong annual output for program continuity",
-      "Corrected audit typo on Pharmacy and Poison Board"
+      "Corrected Pharmacy and Poison Board naming for Kenya"
     ]
   },
   {
@@ -340,7 +340,7 @@ const rawProducts = [
     marketFocus: "WHO-linked and regional antiviral procurement",
     highlights: [
       "WHO and regional filing profile",
-      "Corrected audit typo for Indonesia",
+      "Corrected Indonesia authority naming",
       "Targeted annual capacity for specialized programs"
     ]
   },
@@ -701,16 +701,16 @@ export const facilities = [
 ];
 
 export const scientists = [
-  { slug: "process-chemistry-lead", name: "Process Chemistry Lead", role: "Scientific leadership profile scaffold", expertise: "Antiviral route scouting and backward-integration strategy", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "analytical-sciences-lead", name: "Analytical Sciences Lead", role: "Scientific leadership profile scaffold", expertise: "Impurity profiling, method validation, and stability analytics", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "regulatory-sciences-lead", name: "Regulatory Sciences Lead", role: "Scientific leadership profile scaffold", expertise: "USDMF, CEP, and market-specific documentation workflows", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "antiviral-platform-lead", name: "Antiviral Platform Lead", role: "Scientific leadership profile scaffold", expertise: "Antiviral scale-up and technology transfer", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "cns-platform-lead", name: "CNS Platform Lead", role: "Scientific leadership profile scaffold", expertise: "CNS API route optimization and polymorph control", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "cardio-metabolic-lead", name: "Cardio-Metabolic Lead", role: "Scientific leadership profile scaffold", expertise: "Anti-diabetic and anti-hypertensive process development", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "scale-up-lead", name: "Scale-Up Lead", role: "Scientific leadership profile scaffold", expertise: "Lab-to-plant transfer and pilot-to-commercial readiness", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "quality-systems-lead", name: "Quality Systems Lead", role: "Scientific leadership profile scaffold", expertise: "Quality systems, audit readiness, and cross-site compliance", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "solid-state-lead", name: "Solid-State Lead", role: "Scientific leadership profile scaffold", expertise: "Polymorph, crystallization, and physical-form strategy", qualification: "Doctoral profile to be published after internal approvals" },
-  { slug: "custom-synthesis-lead", name: "Custom Synthesis Lead", role: "Scientific leadership profile scaffold", expertise: "Route scouting, complex chemistry, and custom development projects", qualification: "Doctoral profile to be published after internal approvals" }
+  { slug: "process-chemistry-lead", name: "Process Chemistry Lead", role: "Scientific leadership profile", expertise: "Antiviral route scouting and backward-integration strategy", qualification: "Doctoral profile available through business development review" },
+  { slug: "analytical-sciences-lead", name: "Analytical Sciences Lead", role: "Scientific leadership profile", expertise: "Impurity profiling, method validation, and stability analytics", qualification: "Doctoral profile available through business development review" },
+  { slug: "regulatory-sciences-lead", name: "Regulatory Sciences Lead", role: "Scientific leadership profile", expertise: "USDMF, CEP, and market-specific documentation workflows", qualification: "Doctoral profile available through business development review" },
+  { slug: "antiviral-platform-lead", name: "Antiviral Platform Lead", role: "Scientific leadership profile", expertise: "Antiviral scale-up and technology transfer", qualification: "Doctoral profile available through business development review" },
+  { slug: "cns-platform-lead", name: "CNS Platform Lead", role: "Scientific leadership profile", expertise: "CNS API route optimization and polymorph control", qualification: "Doctoral profile available through business development review" },
+  { slug: "cardio-metabolic-lead", name: "Cardio-Metabolic Lead", role: "Scientific leadership profile", expertise: "Anti-diabetic and anti-hypertensive process development", qualification: "Doctoral profile available through business development review" },
+  { slug: "scale-up-lead", name: "Scale-Up Lead", role: "Scientific leadership profile", expertise: "Lab-to-plant transfer and pilot-to-commercial readiness", qualification: "Doctoral profile available through business development review" },
+  { slug: "quality-systems-lead", name: "Quality Systems Lead", role: "Scientific leadership profile", expertise: "Quality systems, audit readiness, and cross-site compliance", qualification: "Doctoral profile available through business development review" },
+  { slug: "solid-state-lead", name: "Solid-State Lead", role: "Scientific leadership profile", expertise: "Polymorph, crystallization, and physical-form strategy", qualification: "Doctoral profile available through business development review" },
+  { slug: "custom-synthesis-lead", name: "Custom Synthesis Lead", role: "Scientific leadership profile", expertise: "Route scouting, complex chemistry, and custom development projects", qualification: "Doctoral profile available through business development review" }
 ];
 
 export const insights = [
@@ -904,7 +904,7 @@ export const capabilityFaqs = [
   },
   {
     question: "Do you offer custom synthesis and CDMO support?",
-    answer: "Yes. The mock presents Aurore as supporting route scouting, process development, scale-up, pilot supply, regulatory support, and commercial transfer discussions."
+    answer: "Yes. Aurore supports route scouting, process development, scale-up, pilot supply, regulatory support, and commercial transfer discussions."
   },
   {
     question: "How can a buyer request RFQ or technical documentation?",

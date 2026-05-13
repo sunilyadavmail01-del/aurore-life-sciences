@@ -41,7 +41,7 @@ function capabilityFinderMarkup() {
       <div class="shell section-head">
         <span class="eyebrow">Capability finder</span>
         <h2>Filter by therapy, geography, and integration</h2>
-        <p>The audit called for a procurement-friendly capability finder. This version lets buyers narrow the API library before they request RFQs or connect with a scientist.</p>
+        <p>Procurement and technical teams can narrow the API library before requesting RFQs, documentation, or scientist-led qualification support.</p>
       </div>
       <div class="shell capability-finder">
         <label>
@@ -118,7 +118,7 @@ function renderProductsIndexPage() {
           <div class="shell">
             <span class="eyebrow">API library</span>
             <h1>Individually indexable API portfolio</h1>
-            <p>Each product now has its own supplier-ready page with CAS, filing context, facility linkage, related APIs, and dual conversion paths for regulatory and technical buyers.</p>
+            <p>Each product has a supplier-ready page with CAS, filing context, facility linkage, related APIs, and clear conversion paths for regulatory and technical buyers.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="/regulatory/">Request RFQ</a>
               <a class="btn btn-secondary" href="/scientists/">Connect with a Scientist</a>
@@ -132,7 +132,7 @@ function renderProductsIndexPage() {
             <div>
               <span class="eyebrow">DMF library</span>
               <h2>Gated request flow for DMF, COA, and capability packs</h2>
-              <p>The audit recommended a lead-capture gate for technical documentation. This mock routes the buyer to a structured request instead of a dead-end contact link.</p>
+              <p>Technical documentation requests are routed with molecule, market, and qualification context so regulatory teams can respond with the right pack.</p>
               <div class="proof-grid">
                 <article><h3>Request RFQ</h3><p>Trigger regulatory documentation review for a specific molecule or market.</p></article>
                 <article><h3>Request COA / COE</h3><p>Signal quality-document interest without exposing sensitive files publicly.</p></article>
@@ -305,7 +305,7 @@ function renderApiPage() {
           <div class="shell split api-split">
             <div>
               <span class="eyebrow">Molecule overview</span>
-              <h2>Template fields aligned to the audit</h2>
+              <h2>Molecule profile for supplier qualification</h2>
               <p>${product.mechanism}</p>
               <div class="proof-grid">
                 ${product.highlights.map((item) => `<article><h3>Key point</h3><p>${item}</p></article>`).join("")}
@@ -336,7 +336,7 @@ function renderApiPage() {
                   <tr><th>Parent hub</th><td><a href="/therapy-areas/${hub.slug}/">${product.category}</a></td></tr>
                   <tr><th>Facility page</th><td><a href="/facilities/${facility.slug}/">${facility.name}</a></td></tr>
                   <tr><th>Regulatory dashboard</th><td><a href="/regulatory/">Audit history, DMF counts, and approval signals</a></td></tr>
-                  <tr><th>Scientific route</th><td><a href="/scientists/">Meet the scientific leadership scaffold</a></td></tr>
+                  <tr><th>Scientific route</th><td><a href="/scientists/">Meet the scientific leadership team</a></td></tr>
                 </tbody>
               </table>
             </div>
@@ -384,7 +384,7 @@ function renderFacilityPage() {
             <h1>${facility.name} Facility</h1>
             <p>${facility.narrative}</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="/regulatory/">Request audit pack</a>
+              <a class="btn btn-primary" href="/regulatory/">Request quality pack</a>
               <a class="btn btn-secondary" href="/scientists/">Connect with a Scientist</a>
             </div>
           </div>
@@ -394,12 +394,12 @@ function renderFacilityPage() {
             <aside class="image-panel"><img src="${facility.image}" alt="${facility.name} manufacturing facility" /></aside>
             <div>
               <span class="eyebrow">Facility facts</span>
-              <h2>Capacity, certifications, and audit rhythm</h2>
+              <h2>Capacity, certifications, and qualification cadence</h2>
               <div class="proof-grid">
                 <article><h3>Reactor capacity</h3><p>${facility.capacity}</p></article>
                 <article><h3>Primary focus</h3><p>${facility.focus}</p></article>
                 <article><h3>Certifications</h3><p>${facility.certifications.join(", ")}</p></article>
-                <article><h3>Audit history</h3><p>${facility.auditHistory[0]}</p></article>
+                <article><h3>Inspection readiness</h3><p>${facility.auditHistory[0]}</p></article>
               </div>
             </div>
           </div>
@@ -444,7 +444,7 @@ function renderScientistsPage() {
           <div class="shell">
             <span class="eyebrow">E-E-A-T</span>
             <h1>Meet our scientific leadership</h1>
-            <p>The audit explicitly called for a visible scientist page. This mock provides the page structure, expertise framing, and conversion routes while the final approved roster, names, and photos are prepared.</p>
+            <p>Aurore's scientific leadership supports route scouting, impurity strategy, analytical validation, technology transfer, and regulated-market qualification discussions.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="/regulatory/">Request RFQ</a>
               <a class="btn btn-secondary" href="/#contact">Talk to the team</a>
@@ -454,8 +454,8 @@ function renderScientistsPage() {
         <section class="section">
           <div class="shell section-head">
             <span class="eyebrow">Doctoral bench</span>
-            <h2>10-scientist authority scaffold</h2>
-            <p>Roles, expertise areas, and publication placeholders are set up so the final CTO presentation can show the E-E-A-T structure the audit recommends.</p>
+            <h2>Scientific authority across API development</h2>
+            <p>Expertise areas are organized around process chemistry, analytical science, regulatory support, scale-up, solid-state strategy, and custom synthesis.</p>
           </div>
           <div class="shell scientist-grid">
             ${scientists
@@ -489,7 +489,7 @@ function renderRegulatoryPage() {
           <div class="shell">
             <span class="eyebrow">Trust signals</span>
             <h1>Regulatory dashboard</h1>
-            <p>A public-facing trust page for DMF counts, certifications, inspections, and capability FAQs was one of the clearest recommendations in the audit.</p>
+            <p>A public-facing trust page brings together DMF counts, certifications, inspections, quality systems, and capability FAQs for buyer due diligence.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="/products/">Request RFQ</a>
               <a class="btn btn-secondary" href="/scientists/">Connect with a Scientist</a>
@@ -697,7 +697,7 @@ function renderMarketPage() {
             <div>
               <span class="eyebrow">Regional narrative</span>
               <h2>Regulatory and commercial positioning</h2>
-              <p>${market.name} pages were recommended in the audit as long-tail capture surfaces. This mock links market positioning directly to relevant products and request paths.</p>
+              <p>${market.name} positioning links regional regulatory expectations directly to relevant products, facilities, and request paths.</p>
               <ul class="simple-list">
                 ${market.approvals.map((approval) => `<li>${approval}</li>`).join("")}
               </ul>
@@ -728,7 +728,7 @@ function renderNotFound(activePage) {
         <section class="page-hero">
           <div class="shell">
             <span class="eyebrow">Page not found</span>
-            <h1>This page is not in the mock yet</h1>
+            <h1>This page is not available yet</h1>
             <p>Return to the library or home page to keep exploring the Aurore website rebuild.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="/products/">Browse APIs</a>

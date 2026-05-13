@@ -170,7 +170,7 @@ function renderHeroCarousel() {
         ${heroSlides.map((slide, i) => `
           <article class="hl-hero__slide ${i === 0 ? "is-active" : ""}" data-hero-slide aria-hidden="${i === 0 ? "false" : "true"}">
             <div class="hl-hero__bg" aria-hidden="true">
-              <img src="${slide.image}" alt="${slide.imageAlt}" loading="${i === 0 ? "eager" : "lazy"}" />
+              <img src="${slide.image}" alt="${slide.imageAlt}" loading="${i === 0 ? "eager" : "lazy"}" decoding="async" ${i === 0 ? `fetchpriority="high"` : ""} />
               <div class="hl-hero__overlay"></div>
               <div class="hl-hero__glow"></div>
             </div>
@@ -196,7 +196,7 @@ function renderHeroCarousel() {
       </div>
 
       <div class="hl-hero__controls shell" aria-label="Hero carousel controls">
-        <div class="hl-hero__progress" aria-hidden="true">
+        <div class="hl-hero__progress">
           ${heroSlides.map((slide, i) => `
             <button class="hl-hero__dot ${i === 0 ? "is-active" : ""}" type="button" data-hero-dot="${i}" aria-label="Show slide ${i + 1}: ${slide.title}">
               <span></span>
@@ -781,7 +781,7 @@ function renderManufacturing() {
 function renderRnd() {
   return `
     <main>
-      ${pageHero("Scientists", "Scientific leadership and process-development authority", "The audit called for a visible scientist page and stronger E-E-A-T. This section now points toward that public-facing authority layer.")}
+      ${pageHero("Scientists", "Scientific leadership and process-development authority", "Public scientific leadership strengthens route-scouting confidence, technical due diligence, and regulated-market buyer trust.")}
       <section class="section">
         <div class="shell split">
           <div>
@@ -843,8 +843,8 @@ function renderCareers() {
         <div class="shell split api-split">
           <div>
             <span class="eyebrow">Join Aurore</span>
-            <h2>Careers page scaffold</h2>
-            <p>This section gives the new header link a clean destination while detailed job listings, culture content, and application workflows are prepared.</p>
+            <h2>Careers in API science and manufacturing</h2>
+            <p>Explore careers across process chemistry, analytical science, quality, regulatory affairs, manufacturing, and business development.</p>
             <div class="proof-grid">
               <article><h3>R&D and analytical science</h3><p>Process chemistry, impurity profiling, method development, and scale-up roles.</p></article>
               <article><h3>Manufacturing and quality</h3><p>Plant operations, quality systems, EHS, and regulatory documentation pathways.</p></article>
