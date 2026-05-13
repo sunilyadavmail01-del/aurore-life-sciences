@@ -9,6 +9,7 @@
     "dev:host": "vite --host 0.0.0.0 --port 5178",
     "prebuild": "node scripts/generate-api-pages.mjs",
     "build": "vite build",
+    "postbuild": "node scripts/prepare-netlify-output.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 5178"
   },
   "devDependencies": {
