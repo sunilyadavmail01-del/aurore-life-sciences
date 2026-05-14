@@ -745,11 +745,19 @@ function renderPeptideHero() {
           <span>Technical engagement model</span>
           <strong>Process, analytical, regulatory, and scale-up review aligned from first discussion.</strong>
           <div class="pep-hero__panel-grid">
-            <p><b>01</b> Feasibility</p>
-            <p><b>02</b> CMC path</p>
-            <p><b>03</b> Supply readiness</p>
+            <p><b>01</b><span>Feasibility & route screen</span></p>
+            <p><b>02</b><span>Analytical / CMC pathway</span></p>
+            <p><b>03</b><span>Scale-up & supply readiness</span></p>
           </div>
         </aside>
+      </div>
+      <div class="pep-hero__trust" aria-label="Peptide platform trust signals">
+        <div class="shell pep-hero__trust-inner">
+          <span>Regulated market orientation</span>
+          <span>Process chemistry-led engagement</span>
+          <span>Analytical and documentation discipline</span>
+          <span>Commercial manufacturing readiness</span>
+        </div>
       </div>
     </section>`;
 }
@@ -766,9 +774,9 @@ function renderPeptideSectionHead(kicker, title, body = "", light = false) {
 function renderPeptides() {
   const capabilityCards = [
     ["01", "Peptide API & intermediate development", "Structured support for peptide API, key intermediate, and custom route discussions where chemistry, quality, and supply continuity need to be evaluated together."],
-    ["02", "Route scouting & process definition", "Early technical assessment across synthetic strategy, impurity risk, critical process parameters, and scale-sensitive decision points."],
+    ["02", "Route scouting & process definition", "Early assessment across synthetic strategy, impurity risk, critical process parameters, safety, and scale-sensitive decision points."],
     ["03", "Analytical method strategy", "Method-development conversations covering identity, purity, impurity profiling, assay expectations, and documentation readiness for technical review."],
-    ["04", "Scale-up and technology transfer", "Pilot and commercial manufacturing discussions framed around batch strategy, process robustness, yield, safety, and long-term supply planning."],
+    ["04", "Scale-up and technology transfer", "Pilot and commercial manufacturing discussions framed around batch strategy, process robustness, yield, equipment fit, and long-term supply planning."],
     ["05", "Regulatory documentation support", "CMC-aligned technical packets, filing-oriented data expectations, and customer-specific documentation pathways for regulated market programs."],
     ["06", "Scientific-commercial coordination", "A single engagement route for procurement, technical, regulatory, and commercial stakeholders evaluating a peptide partnership."]
   ];
@@ -797,8 +805,8 @@ function renderPeptides() {
           <div>
             ${renderPeptideSectionHead(
               "Technical capabilities",
-              "A peptide vertical built for serious technical qualification.",
-              "Peptide programs demand more than a generic RFQ page. This platform frames the conversation around process feasibility, analytical controls, documentation discipline, and manufacturing readiness from the beginning."
+              "A peptide vertical built for technical due diligence.",
+              "Peptide programs demand more than a generic RFQ page. Aurore frames the conversation around process feasibility, analytical controls, documentation discipline, supply continuity, and manufacturing readiness from the beginning."
             )}
           </div>
           <div class="pep-stat-board reveal-up" style="--delay:0.12s">
@@ -861,7 +869,7 @@ function renderPeptides() {
             ${renderPeptideSectionHead(
               "Process chemistry expertise",
               "Scientific depth that supports regulated peptide programs.",
-              "The page now positions peptide work as an enterprise capability: chemistry-led, analytically controlled, documentation-aware, and prepared for long-term customer qualification."
+              "Aurore positions peptide work as an enterprise capability: chemistry-led, analytically controlled, documentation-aware, and prepared for long-term customer qualification."
             )}
             <div class="pep-expertise__list">
               ${expertise.map(([title, body], i) => `
