@@ -724,8 +724,14 @@ function renderCdmo() {
 function renderPeptideHero() {
   return `
     <section class="pep-hero" aria-labelledby="peptide-hero-title">
-      <div class="pep-hero__media" aria-hidden="true">
-        <img src="${rndImage}" alt="" loading="eager" decoding="async" fetchpriority="high" />
+      <div class="pep-hero__media" data-peptide-video-stage aria-hidden="true">
+        <img class="pep-hero__poster" src="${rndImage}" alt="" loading="eager" decoding="async" fetchpriority="high" />
+        <video class="pep-hero__video is-active" data-peptide-video muted playsinline autoplay preload="auto" poster="${rndImage}">
+          <source src="/videos/peptide-hero.mp4" type="video/mp4" />
+        </video>
+        <video class="pep-hero__video" data-peptide-video muted playsinline preload="auto" poster="${rndImage}">
+          <source src="/videos/peptide-hero.mp4" type="video/mp4" />
+        </video>
         <div class="pep-hero__overlay"></div>
         <div class="pep-hero__glow"></div>
       </div>
@@ -1289,6 +1295,96 @@ function initHeroCarousel() {
   start();
 }
 
+function initPeptideHeroVideo() {
+  const stage = document.querySelector("[data-peptide-video-stage]");
+  if (!stage) return;
+
+  const videos = Array.from(stage.querySelectorAll("[data-peptide-video]"));
+  if (videos.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const fadeMs = 950;
+  const leadSeconds = 1.15;
+  let activeIndex = 0;
+  let idleIndex = 1;
+  let isCrossfading = false;
+  let rafId = null;
+
+  videos.forEach((video, index) => {
+    video.loop = false;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("muted", "");
+    video.classList.toggle("is-active", index === activeIndex);
+    video.addEventListener("ended", crossfade);
+  });
+
+  function playVideo(video) {
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        stage.classList.add("video-paused");
+      });
+    }
+  }
+
+  function safeSeekStart(video) {
+    try {
+      video.currentTime = Math.min(0.04, Math.max(0, (video.duration || 1) - 0.2));
+    } catch {
+      // Browsers can briefly reject seeks before metadata is ready; the poster remains visible.
+    }
+  }
+
+  function crossfade() {
+    if (isCrossfading || !stage.isConnected) return;
+    const from = videos[activeIndex];
+    const to = videos[idleIndex];
+    if (!from || !to) return;
+
+    isCrossfading = true;
+    safeSeekStart(to);
+    playVideo(to);
+
+    requestAnimationFrame(() => {
+      to.classList.add("is-active");
+      from.classList.remove("is-active");
+    });
+
+    window.setTimeout(() => {
+      from.pause();
+      safeSeekStart(from);
+      activeIndex = idleIndex;
+      idleIndex = activeIndex === 0 ? 1 : 0;
+      isCrossfading = false;
+    }, fadeMs + 140);
+  }
+
+  function monitorLoop() {
+    if (!stage.isConnected) {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      return;
+    }
+
+    const activeVideo = videos[activeIndex];
+    if (
+      activeVideo &&
+      Number.isFinite(activeVideo.duration) &&
+      activeVideo.duration > leadSeconds + 0.5 &&
+      activeVideo.currentTime >= activeVideo.duration - leadSeconds
+    ) {
+      crossfade();
+    }
+
+    rafId = window.requestAnimationFrame(monitorLoop);
+  }
+
+  videos[0].addEventListener("loadeddata", () => stage.classList.add("video-ready"), { once: true });
+  playVideo(videos[0]);
+  rafId = window.requestAnimationFrame(monitorLoop);
+}
+
 function attachEvents() {
   document.querySelectorAll("[data-page]").forEach((element) => {
     element.addEventListener("click", () => setPage(element.dataset.page));
@@ -1315,6 +1411,7 @@ function attachEvents() {
 
   attachCommonUi();
   initHeroCarousel();
+  initPeptideHeroVideo();
   initScrollReveal();
   initCountUp();
 }
