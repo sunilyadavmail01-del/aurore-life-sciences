@@ -81,8 +81,8 @@ const heroSlides = [
     panelLabel: "CPHI China 2026",
     panelValue: "16-18 June · Shanghai",
     ctas: [
-      { label: "Schedule Meeting", href: "/#contact", variant: "primary" },
-      { label: "Contact Team", href: "/#contact", variant: "outline" }
+      { label: "Schedule Meeting", href: "/events/cphi-shanghai-2026/#meeting-request", variant: "primary" },
+      { label: "Why Meet Aurore", href: "/events/cphi-shanghai-2026/", variant: "outline" }
     ]
   },
   {
@@ -721,28 +721,195 @@ function renderCdmo() {
     </main>`;
 }
 
+function renderPeptideHero() {
+  return `
+    <section class="pep-hero" aria-labelledby="peptide-hero-title">
+      <div class="pep-hero__media" aria-hidden="true">
+        <img src="${rndImage}" alt="" loading="eager" decoding="async" fetchpriority="high" />
+        <div class="pep-hero__overlay"></div>
+        <div class="pep-hero__glow"></div>
+      </div>
+      <div class="shell pep-hero__inner">
+        <div class="pep-hero__content">
+          <span class="hl-eyebrow pep-hero__eyebrow">Peptide Platform</span>
+          <h1 class="pep-hero__title" id="peptide-hero-title">Precision peptide development for regulated markets.</h1>
+          <p class="pep-hero__body">
+            Supporting peptide API, intermediates, process development, analytical strategy, and scalable manufacturing discussions through a scientific-first engagement model.
+          </p>
+          <div class="pep-hero__actions">
+            <button class="hl-btn hl-btn--primary" type="button" data-scroll-to="peptide-capabilities">Explore Capabilities</button>
+            ${pageButton("Start Technical Discussion", "contact", "hl-btn hl-btn--outline")}
+          </div>
+        </div>
+        <aside class="pep-hero__panel reveal-fade" aria-label="Peptide engagement readiness">
+          <span>Technical engagement model</span>
+          <strong>Process, analytical, regulatory, and scale-up review aligned from first discussion.</strong>
+          <div class="pep-hero__panel-grid">
+            <p><b>01</b> Feasibility</p>
+            <p><b>02</b> CMC path</p>
+            <p><b>03</b> Supply readiness</p>
+          </div>
+        </aside>
+      </div>
+    </section>`;
+}
+
+function renderPeptideSectionHead(kicker, title, body = "", light = false) {
+  return `
+    <div class="hl-section-head reveal-up">
+      <span class="hl-eyebrow ${light ? "hl-eyebrow--dim" : ""}">${kicker}</span>
+      <h2 class="hl-section__title ${light ? "hl-section__title--light" : ""}">${title}</h2>
+      ${body ? `<p class="hl-section__body ${light ? "hl-section__body--dim" : ""}">${body}</p>` : ""}
+    </div>`;
+}
+
 function renderPeptides() {
+  const capabilityCards = [
+    ["01", "Peptide API & intermediate development", "Structured support for peptide API, key intermediate, and custom route discussions where chemistry, quality, and supply continuity need to be evaluated together."],
+    ["02", "Route scouting & process definition", "Early technical assessment across synthetic strategy, impurity risk, critical process parameters, and scale-sensitive decision points."],
+    ["03", "Analytical method strategy", "Method-development conversations covering identity, purity, impurity profiling, assay expectations, and documentation readiness for technical review."],
+    ["04", "Scale-up and technology transfer", "Pilot and commercial manufacturing discussions framed around batch strategy, process robustness, yield, safety, and long-term supply planning."],
+    ["05", "Regulatory documentation support", "CMC-aligned technical packets, filing-oriented data expectations, and customer-specific documentation pathways for regulated market programs."],
+    ["06", "Scientific-commercial coordination", "A single engagement route for procurement, technical, regulatory, and commercial stakeholders evaluating a peptide partnership."]
+  ];
+
+  const pathway = [
+    ["Confidential brief", "Molecule, target market, quantity, timeline, and documentation expectations captured at intake."],
+    ["Scientific triage", "R&D and analytical teams review feasibility, process risk, impurity controls, and development assumptions."],
+    ["Technical proposal", "Scope, milestones, sample or pilot needs, regulatory support, and commercial terms are aligned."],
+    ["Development execution", "Process work, analytical methods, batch strategy, and documentation progress under a shared review cadence."],
+    ["Scale readiness", "Manufacturing pathway, supply assumptions, and lifecycle support are prepared for customer qualification."]
+  ];
+
+  const expertise = [
+    ["Process chemistry", "Synthetic route assessment, coupling/deprotection strategy discussions, impurity fate mapping, solvent/reagent controls, and manufacturability review."],
+    ["Analytical control", "Identity, purity, related substances, residual solvents, assay, method robustness, and customer-facing technical documentation support."],
+    ["Regulatory alignment", "Filing-readiness thinking for regulated and semi-regulated markets, with DMF/CMC expectations considered early rather than late."],
+    ["Manufacturing readiness", "Scale-up feasibility, equipment fit, batch economics, supply continuity, quality systems, and commercial transfer planning."]
+  ];
+
   return `
     <main>
-      ${pageHero("Peptides", "Peptide development and supply pathway", "A focused entry point for peptide API, intermediate, and custom development conversations.")}
-      <section class="section">
-        <div class="shell split api-split">
+      ${renderPeptideHero()}
+
+      <section class="hl-section pep-intro" id="peptide-capabilities">
+        <div class="shell pep-intro__grid">
           <div>
-            <span class="eyebrow">Peptide capabilities</span>
-            <h2>Built for early technical qualification</h2>
-            <p>This tab gives peptide buyers a dedicated route into the portfolio while detailed molecule pages and qualification content are expanded.</p>
-            <div class="proof-grid">
-              <article><h3>Custom development</h3><p>Route evaluation, process development, and analytical method support for peptide programs.</p></article>
-              <article><h3>Documentation path</h3><p>RFQ, technical pack, sample, and regulatory-readiness requests can be routed through the structured form.</p></article>
-              <article><h3>Scale-up conversation</h3><p>Commercial and pilot requirements can be captured with market, quantity, and timeline context.</p></article>
-              <article><h3>Scientific review</h3><p>Technical questions can be triaged into the R&D and regulatory review workflow.</p></article>
+            ${renderPeptideSectionHead(
+              "Technical capabilities",
+              "A peptide vertical built for serious technical qualification.",
+              "Peptide programs demand more than a generic RFQ page. This platform frames the conversation around process feasibility, analytical controls, documentation discipline, and manufacturing readiness from the beginning."
+            )}
+          </div>
+          <div class="pep-stat-board reveal-up" style="--delay:0.12s">
+            <div>
+              <strong>R&D</strong>
+              <span>Scientific-first engagement</span>
+            </div>
+            <div>
+              <strong>CMC</strong>
+              <span>Documentation pathway</span>
+            </div>
+            <div>
+              <strong>GMP</strong>
+              <span>Scale-up orientation</span>
             </div>
           </div>
-          <aside class="detail-panel">
-            <h3>Start a peptide RFQ</h3>
-            <p>Use the RFQ form to preserve molecule, market, quantity, and requested documentation context.</p>
-            ${pageButton("Request peptide RFQ", "contact", "btn btn-primary")}
-          </aside>
+        </div>
+        <div class="shell pep-cap-grid">
+          ${capabilityCards.map(([num, title, body], i) => `
+            <article class="pep-cap-card reveal-up" style="--delay:${0.07 * i}s">
+              <span class="pep-cap-card__num">${num}</span>
+              <h3>${title}</h3>
+              <p>${body}</p>
+            </article>`).join("")}
+        </div>
+      </section>
+
+      <section class="hl-section hl-section--dark pep-pathway" aria-labelledby="peptide-pathway-title">
+        <div class="shell">
+          <div class="pep-pathway__head">
+            ${renderPeptideSectionHead(
+              "Development pathway",
+              "From molecule brief to manufacturing-ready partnership.",
+              "A disciplined engagement model helps technical and commercial teams evaluate feasibility, risk, documentation needs, and supply assumptions without losing momentum.",
+              true
+            )}
+            <a class="hl-btn hl-btn--outline-light reveal-up" href="/scientists/" style="--delay:0.12s">Meet scientific leadership</a>
+          </div>
+          <div class="pep-pathway__grid">
+            ${pathway.map(([title, body], i) => `
+              <article class="pep-step reveal-up" style="--delay:${0.08 * i}s">
+                <span class="pep-step__index">${String(i + 1).padStart(2, "0")}</span>
+                <h3>${title}</h3>
+                <p>${body}</p>
+              </article>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="hl-section pep-expertise">
+        <div class="shell hl-split">
+          <div class="pep-expertise__visual reveal-fade">
+            <img src="${facilityTwo}" alt="Aurore API manufacturing environment" loading="lazy" decoding="async" />
+            <div class="pep-expertise__caption">
+              <span>Manufacturing readiness</span>
+              <strong>Peptide discussions connected to scale, quality, and supply resilience.</strong>
+            </div>
+          </div>
+          <div>
+            ${renderPeptideSectionHead(
+              "Process chemistry expertise",
+              "Scientific depth that supports regulated peptide programs.",
+              "The page now positions peptide work as an enterprise capability: chemistry-led, analytically controlled, documentation-aware, and prepared for long-term customer qualification."
+            )}
+            <div class="pep-expertise__list">
+              ${expertise.map(([title, body], i) => `
+                <article class="pep-expertise__item reveal-up" style="--delay:${0.08 * i}s">
+                  <h3>${title}</h3>
+                  <p>${body}</p>
+                </article>`).join("")}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hl-section hl-section--soft pep-regulatory">
+        <div class="shell">
+          ${renderPeptideSectionHead(
+            "Analytical and documentation support",
+            "Built around the evidence customers need to qualify a partner.",
+            "Enterprise pharmaceutical buyers evaluate repeatability, documentation quality, regulatory context, and escalation paths. Peptide enquiries are routed with those trust signals visible."
+          )}
+          <div class="pep-proof-grid">
+            ${[
+              ["122+", "Regulatory filings", "A broader Aurore filing base that reinforces documentation discipline for technical buyers."],
+              ["70+", "Countries served", "Global market orientation for customers planning regional or multi-market peptide programs."],
+              ["2", "GMP facilities", "Hyderabad manufacturing infrastructure supporting scale-up and commercial supply discussions."],
+              ["10", "Doctorates", "Scientific leadership available for process, analytical, and regulatory review conversations."]
+            ].map(([value, label, body], i) => `
+              <article class="pep-proof-card reveal-up" style="--delay:${0.08 * i}s">
+                <strong>${value}</strong>
+                <h3>${label}</h3>
+                <p>${body}</p>
+              </article>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="pep-rfq">
+        <div class="pep-rfq__glow" aria-hidden="true"></div>
+        <div class="shell pep-rfq__panel reveal-up">
+          <div>
+            <span class="hl-eyebrow">RFQ engagement pathway</span>
+            <h2>Discuss peptide development requirements with our technical and commercial teams.</h2>
+            <p>Share molecule context, target market, stage of development, quantity expectations, analytical requirements, and documentation needs. Aurore can route the discussion to the right scientific, quality, regulatory, and commercial stakeholders.</p>
+          </div>
+          <div class="pep-rfq__actions">
+            ${pageButton("Start Technical Discussion", "contact", "hl-btn hl-btn--primary")}
+            <a class="hl-btn hl-btn--outline" href="/regulatory/">Review regulatory readiness</a>
+            <span>Confidential technical briefs can be handled through the RFQ workflow.</span>
+          </div>
         </div>
       </section>
     </main>`;
@@ -1119,6 +1286,12 @@ function attachEvents() {
     element.addEventListener("click", () => setPage(element.dataset.page));
   });
 
+  document.querySelectorAll("[data-scroll-to]").forEach((element) => {
+    element.addEventListener("click", () => {
+      document.getElementById(element.dataset.scrollTo)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
   const productSearch = document.querySelector("#productSearch");
   productSearch?.addEventListener("input", (event) => {
     productQuery = event.target.value;
@@ -1151,6 +1324,7 @@ window.addEventListener("hashchange", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-activePage = window.location.hash.replace("#", "") || "home";
+activePage = isKnownPage(window.location.hash.replace("#", "")) ? window.location.hash.replace("#", "") : "home";
+document.title = titleMap[activePage];
 render();
 window.scrollTo({ top: 0 });

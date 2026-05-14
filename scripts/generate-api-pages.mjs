@@ -43,6 +43,7 @@ const insightDates = {
 };
 
 const generatedRoots = ["api", "products", "intermediates", "facilities", "therapy-areas", "scientists", "regulatory", "insights", "markets"];
+const eventPath = "/events/cphi-shanghai-2026/";
 
 function organizationSchema() {
   return {
@@ -194,6 +195,36 @@ function localBusinessSchema(facility) {
   };
 }
 
+function cphiEventSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: "CPHI & PMEC China 2026",
+    startDate: "2026-06-16",
+    endDate: "2026-06-18",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: "Shanghai New International Expo Center",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Shanghai",
+        addressCountry: "CN"
+      }
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "CPHI & PMEC China"
+    },
+    attendee: {
+      "@type": "Organization",
+      name: "Aurore Life Sciences Private Limited",
+      url: `${baseUrl}${eventPath}`
+    }
+  };
+}
+
 function productFaqSchema(product) {
   return {
     "@context": "https://schema.org",
@@ -291,7 +322,7 @@ async function writePage(relativeDir, page) {
 }
 
 async function generatePages() {
-  await Promise.all(generatedRoots.map((dir) => rm(path.join(rootDir, dir), { recursive: true, force: true })));
+  await Promise.all([...generatedRoots, "events"].map((dir) => rm(path.join(rootDir, dir), { recursive: true, force: true })));
 
   await writePage(
     "products",
@@ -302,6 +333,25 @@ async function generatePages() {
       canonicalPath: "/products/",
       pageType: "productIndex",
       schemas: [organizationSchema(), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Products", path: "/products/" }]), faqSchema(capabilityFaqs)]
+    })
+  );
+
+  await writePage(
+    path.join("events", "cphi-shanghai-2026"),
+    htmlPage({
+      title: "Meet Aurore at CPHI Shanghai 2026",
+      description: "Schedule a focused CPHI Shanghai 2026 meeting with Aurore Life Sciences for APIs, CDMO projects, documentation, and supplier qualification.",
+      canonicalPath: eventPath,
+      pageType: "cphiShanghai",
+      schemas: [
+        organizationSchema(),
+        cphiEventSchema(),
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Events", path: eventPath },
+          { name: "CPHI Shanghai 2026", path: eventPath }
+        ])
+      ]
     })
   );
 
@@ -530,6 +580,7 @@ async function generateSupportFiles() {
   const allPaths = [
     "/",
     "/products/",
+    eventPath,
     ...products.map((product) => apiHref(product.slug)),
     "/intermediates/",
     ...intermediateFamilies.map((family) => intermediateHref(family.slug)),

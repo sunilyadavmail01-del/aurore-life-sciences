@@ -5,6 +5,8 @@ import {
   approvals,
   capabilityFaqs,
   facilities,
+  facilityOne,
+  facilityTwo,
   findFacilityBySlug,
   findIntermediateFamilyBySlug,
   findInsightBySlug,
@@ -19,6 +21,7 @@ import {
   markets,
   products,
   regulatoryDashboard,
+  rndImage,
   scientists,
   therapyHubs,
   therapeuticAreas
@@ -155,6 +158,170 @@ function renderProductsIndexPage() {
       </main>`
   );
   attachCapabilityFinder();
+}
+
+function renderCphiShanghaiPage() {
+  const eventFacts = [
+    ["Event", "CPHI & PMEC China 2026"],
+    ["Dates", "16-18 June 2026"],
+    ["Venue", "Shanghai New International Expo Center"],
+    ["Meeting focus", "API supply, CDMO projects, regulatory documentation, and portfolio qualification"]
+  ];
+  const meetingReasons = [
+    ["API supply resilience", "Discuss commercial API availability, second-source programs, backward integration, and continuity planning for regulated and growth markets."],
+    ["Technical fit in one conversation", "Bring molecule, impurity, route, filing, and scale-up questions into a single meeting with context for Aurore's BD, R&D, and regulatory teams."],
+    ["Documentation-ready follow-up", "Use the event request path to preserve market, molecule, timing, and requested documents so the right pack can be prepared before or after Shanghai."],
+    ["CDMO and lifecycle programs", "Explore route development, pilot batches, tech transfer, and commercial API manufacturing where speed, evidence, and cost control matter."]
+  ];
+  const focusAreas = [
+    "Commercial API sourcing and second-source qualification",
+    "Intermediates and backward-integrated supply conversations",
+    "CDMO route scouting, scale-up, and registration support",
+    "DMF, CEP, COA, sample, and audit-readiness documentation"
+  ];
+  return pageShell(
+    "contact",
+    `
+      <main>
+        <section class="event-hero">
+          <div class="event-hero__media" aria-hidden="true">
+            <img src="${facilityTwo}" alt="" />
+          </div>
+          <div class="event-hero__overlay" aria-hidden="true"></div>
+          <div class="shell event-hero__inner">
+            <div class="event-hero__copy">
+              <span class="hl-eyebrow event-hero__eyebrow">CPHI Shanghai 2026</span>
+              <h1>Meet Aurore at CPHI &amp; PMEC China 2026.</h1>
+              <p>Plan a focused supplier conversation in Shanghai with the Aurore team for APIs, intermediates, CDMO programs, documentation access, and global supply qualification.</p>
+              <div class="event-hero__actions">
+                <a class="hl-btn hl-btn--primary" href="#meeting-request">Request a meeting</a>
+                <a class="hl-btn hl-btn--outline" href="/products/">Review API portfolio</a>
+              </div>
+            </div>
+            <aside class="event-card event-card--dark" aria-label="Event details">
+              ${eventFacts.map(([label, value]) => `
+                <div class="event-card__fact">
+                  <span>${label}</span>
+                  <strong>${value}</strong>
+                </div>`).join("")}
+            </aside>
+          </div>
+        </section>
+
+        <section class="hl-section event-intent">
+          <div class="shell event-intent__grid">
+            <div>
+              <span class="hl-eyebrow">Why meet Aurore there</span>
+              <h2 class="hl-section__title">Turn a busy trade-show visit into a qualified supply discussion.</h2>
+              <p class="hl-section__body">CPHI is most useful when the meeting starts with the right context. This page captures your molecule, market, documents, and timeline so the conversation can move beyond a generic contact exchange.</p>
+            </div>
+            <div class="event-reason-grid">
+              ${meetingReasons.map(([title, body], i) => `
+                <article class="event-reason-card reveal-up" style="--delay:${0.07 * i}s">
+                  <span>0${i + 1}</span>
+                  <h3>${title}</h3>
+                  <p>${body}</p>
+                </article>`).join("")}
+            </div>
+          </div>
+        </section>
+
+        <section class="hl-section hl-section--soft event-proof">
+          <div class="shell event-proof__grid">
+            <div class="event-proof__visual reveal-fade">
+              <img src="${rndImage}" alt="Aurore R&D laboratory for process and analytical development" />
+            </div>
+            <div class="event-proof__copy">
+              <span class="hl-eyebrow">Meeting agenda</span>
+              <h2>Bring a live sourcing question, not a business card.</h2>
+              <p>Use your Shanghai meeting to align on technical, commercial, and regulatory requirements while the opportunity is still fresh.</p>
+              <ul class="event-checklist">
+                ${focusAreas.map((item) => `<li>${item}</li>`).join("")}
+              </ul>
+              <div class="event-proof__links">
+                <a class="hl-btn hl-btn--primary" href="#meeting-request">Share meeting brief</a>
+                <a class="hl-btn hl-btn--outline-light" href="/regulatory/">View regulatory dashboard</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="hl-section event-request" id="meeting-request">
+          <div class="shell event-request__grid">
+            <div class="event-request__intro">
+              <span class="hl-eyebrow">Lead capture path</span>
+              <h2>Request a CPHI Shanghai meeting with context attached.</h2>
+              <p>This event form keeps the enquiry tied to CPHI Shanghai 2026 and stages it for the business development, regulatory, and scientific review teams.</p>
+              <div class="event-mini-panel">
+                <strong>Context preserved</strong>
+                <span>Event: CPHI &amp; PMEC China 2026</span>
+                <span>Dates: 16-18 June 2026</span>
+                <span>Venue: Shanghai New International Expo Center</span>
+              </div>
+            </div>
+            <form class="ct-form event-form" data-form="rfq"
+              data-context="CPHI Shanghai 2026 meeting request"
+              data-request-type="CPHI Shanghai 2026 meeting / supplier qualification request"
+              data-route="Aurore Business Development, Regulatory Affairs, and Scientific leadership"
+              data-reference-prefix="CPHI">
+              <input type="hidden" name="event" value="CPHI &amp; PMEC China 2026" />
+              <input type="hidden" name="event_dates" value="16-18 June 2026" />
+              <input type="hidden" name="event_venue" value="Shanghai New International Expo Center" />
+              <div class="ct-form__head">
+                <p class="ct-form__title">CPHI Shanghai meeting request</p>
+                <p class="ct-form__sub">Share enough detail for Aurore to prepare the right person, documents, and next step.</p>
+              </div>
+              <div class="ct-form__body">
+                <p class="form-context">Event context: <strong>CPHI &amp; PMEC China 2026 · 16-18 June · Shanghai</strong></p>
+                <div class="ct-form__row">
+                  <label><span>Company name *</span><input name="company" required placeholder="Your pharmaceutical company" /></label>
+                  <label><span>Contact person *</span><input name="name" required placeholder="Full name" /></label>
+                </div>
+                <div class="ct-form__row">
+                  <label><span>Email *</span><input type="email" name="email" required placeholder="name@company.com" /></label>
+                  <label><span>Phone / WhatsApp</span><input name="phone" placeholder="+86, +91, +1..." /></label>
+                </div>
+                <div class="ct-form__row">
+                  <label><span>Molecule / project focus *</span><input name="molecule" required placeholder="API, intermediate, or CDMO project" /></label>
+                  <label><span>Target market *</span><input name="market" required placeholder="US, EU, China, LATAM, WHO..." /></label>
+                </div>
+                <div class="ct-form__row">
+                  <label><span>Meeting interest</span><select name="request_type">
+                    <option>Supplier qualification meeting</option>
+                    <option>API RFQ / commercial supply</option>
+                    <option>CDMO or route development discussion</option>
+                    <option>DMF / COA / sample request</option>
+                    <option>Regulatory or audit readiness discussion</option>
+                  </select></label>
+                  <label><span>Preferred meeting window</span><input name="timeline_market" placeholder="16 June morning, 17 June afternoon..." /></label>
+                </div>
+                <label>
+                  <span>Agenda and documents needed</span>
+                  <textarea name="notes" placeholder="Quantity, launch timing, specification, required filings, samples, quality documents, or people you want in the meeting..."></textarea>
+                </label>
+                <button class="hl-btn hl-btn--primary ct-form__submit" type="submit">Request CPHI meeting</button>
+                <strong class="form-note" role="status" tabindex="-1" hidden></strong>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="event-final">
+          <div class="shell event-final__inner">
+            <img src="${facilityOne}" alt="Aurore manufacturing campus supporting API supply discussions" />
+            <div>
+              <span class="hl-eyebrow">Before Shanghai</span>
+              <h2>Review the portfolio, then arrive with a shortlist.</h2>
+              <p>Pair the meeting request with product, regulatory, and scientist pages so your team can screen Aurore before the event.</p>
+              <div class="event-final__actions">
+                <a class="hl-btn hl-btn--primary" href="/products/">Browse APIs</a>
+                <a class="hl-btn hl-btn--outline" href="/scientists/">Meet scientific leadership</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>`
+  );
 }
 
 function renderIntermediateFamilyCard(family) {
@@ -751,7 +918,8 @@ const renderers = {
   therapy: renderTherapyPage,
   insightIndex: renderInsightsIndexPage,
   insight: renderInsightPage,
-  market: renderMarketPage
+  market: renderMarketPage,
+  cphiShanghai: renderCphiShanghaiPage
 };
 
 (renderers[pageType] || (() => renderNotFound("home")))();
