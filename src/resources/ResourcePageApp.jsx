@@ -35,10 +35,12 @@ function PillarGrid({ page }) {
         <h2 id={`${page.nav}-pillars-title`}>What enterprise buyers should be able to verify.</h2>
       </div>
       <div className="resource-shell resource-card-grid">
-        {page.pillars.map((pillar) => (
+        {page.pillars.map((pillar, i) => (
           <article className="resource-card" key={pillar.title}>
+            <span className="resource-card__num">{String(i + 1).padStart(2, "0")}</span>
             <h3>{pillar.title}</h3>
             <p>{pillar.body}</p>
+            <span className="resource-card__arrow" aria-hidden="true">→</span>
           </article>
         ))}
       </div>
@@ -220,10 +222,12 @@ function ContactExperience({ page }) {
           <h2 id="contact-routing-title">Choose the conversation you need to start.</h2>
         </div>
         <div className="resource-shell resource-card-grid">
-          {page.contactRoutes.map((route) => (
+          {page.contactRoutes.map((route, i) => (
             <article className="resource-card" key={route.title}>
+              <span className="resource-card__num">{String(i + 1).padStart(2, "0")}</span>
               <h3>{route.title}</h3>
               <p>{route.body}</p>
+              <span className="resource-card__arrow" aria-hidden="true">→</span>
             </article>
           ))}
         </div>

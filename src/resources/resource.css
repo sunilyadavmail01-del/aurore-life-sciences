@@ -192,8 +192,12 @@
   font-weight: 700;
 }
 
+/*
+ * SECTION SPACING — keep in sync with homepage .hl-section (72px).
+ * Do not raise this above 80px; stacked sections create dead whitespace.
+ */
 .resource-section {
-  padding: 96px 0;
+  padding: 72px 0;
 }
 
 .resource-section--soft {
@@ -246,7 +250,22 @@
   margin-top: 18px;
 }
 
-.resource-card-grid,
+/*
+ * CARD GRID — mirrors .hl-therapy-grid on the homepage (1 px gap, shared border).
+ * Keep this pattern in sync. Do not add individual card borders or shadows here;
+ * the grid wrapper provides the visual container.
+ */
+.resource-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #dce5de;
+  border: 1px solid #dce5de;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Other grids keep their own independent gap-based layout */
 .download-grid,
 .insight-grid,
 .facility-mini-grid {
@@ -255,33 +274,62 @@
   gap: 18px;
 }
 
+/*
+ * RESOURCE CARD — mirrors .hl-therapy-card on the homepage.
+ * No individual border/shadow; the grid wrapper provides the container.
+ */
 .resource-card {
   position: relative;
-  min-height: 250px;
-  padding: 28px;
-  border: 1px solid #dce5de;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 30px;
   background: #fff;
-  box-shadow: 0 18px 52px rgba(0, 77, 40, 0.08);
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  transition: background 180ms ease;
 }
 
 .resource-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 154, 68, 0.42);
-  box-shadow: 0 24px 68px rgba(0, 77, 40, 0.14);
+  background: #eef8f1;
+}
+
+.resource-card__num {
+  font-size: 12px;
+  font-weight: 860;
+  letter-spacing: 0.06em;
+  color: #dce5de;
+  margin-bottom: 18px;
+  transition: color 180ms ease;
+}
+
+.resource-card:hover .resource-card__num {
+  color: #009a44;
 }
 
 .resource-card h3 {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   color: #123f28;
-  font-size: 1.25rem;
+  font-size: 1.06rem;
+  font-weight: 760;
   line-height: 1.25;
 }
 
 .resource-card p {
   margin: 0;
+  flex: 1;
   color: #5b6861;
+  font-size: 0.92rem;
+  line-height: 1.64;
+}
+
+.resource-card__arrow {
+  color: #009a44;
+  font-size: 18px;
+  margin-top: 22px;
+  display: block;
+  transition: transform 180ms ease;
+}
+
+.resource-card:hover .resource-card__arrow {
+  transform: translateX(5px);
 }
 
 .resource-proof {
