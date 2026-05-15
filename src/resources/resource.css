@@ -206,11 +206,13 @@
     linear-gradient(180deg, #eef8f1 0%, #fbfdf8 100%);
 }
 
+/*
+ * resource-intro — single column. The old 2-column grid caused the h2
+ * to be 3× taller than the body paragraph, leaving a large empty cavity
+ * inside the section. Stacking removes that problem entirely.
+ */
 .resource-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 80px;
-  align-items: start;
+  max-width: 840px;
 }
 
 .resource-intro h2,
@@ -226,6 +228,10 @@
   font-size: clamp(2rem, 3.8vw, 3.7rem);
   line-height: 1.05;
   letter-spacing: 0;
+}
+
+.resource-intro p {
+  margin-top: 20px;
 }
 
 .resource-intro p,
@@ -802,7 +808,6 @@
 
 @media (max-width: 1020px) {
   .resource-hero__inner,
-  .resource-intro,
   .resource-proof__grid,
   .resource-band__inner,
   .resource-api-strip__inner,
