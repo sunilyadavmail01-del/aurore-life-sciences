@@ -123,6 +123,18 @@ function renderProductsIndexPage() {
   });
 }
 
+function renderResourcePage() {
+  const activePage = pageSlug === "insights" ? "insights" : pageSlug === "contact" ? "contact" : "";
+  pageShell(
+    activePage,
+    `<div id="resource-root"></div>`
+  );
+  import("./resources/ResourcePageApp.jsx").then(({ mountResourcePage }) => {
+    const root = document.querySelector("#resource-root");
+    if (root) mountResourcePage(root, pageSlug);
+  });
+}
+
 function renderCphiShanghaiPage() {
   const eventFacts = [
     ["Event", "CPHI & PMEC China 2026"],
@@ -871,6 +883,7 @@ function renderNotFound(activePage) {
 }
 
 const renderers = {
+  resourcePage: renderResourcePage,
   productIndex: renderProductsIndexPage,
   api: renderApiPage,
   intermediateIndex: renderIntermediatesIndexPage,

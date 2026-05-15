@@ -1,7 +1,13 @@
 User-agent: *
 Allow: /products/
 Allow: /intermediates/
+Allow: /quality/
+Allow: /regulatory/
 Allow: /insights/
+Allow: /downloads/
+Allow: /contact/
+Allow: /global-presence/
+Allow: /partner-with-us/
 Allow: /facilities/
 Allow: /therapy-areas/
 Allow: /markets/

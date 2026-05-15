@@ -42,8 +42,68 @@ const insightDates = {
   "backward-integration-and-api-supply-resilience": { published: "2026-02-14", modified: "2026-02-14" }
 };
 
-const generatedRoots = ["api", "products", "intermediates", "facilities", "therapy-areas", "scientists", "regulatory", "insights", "markets"];
+const generatedRoots = [
+  "api",
+  "products",
+  "intermediates",
+  "facilities",
+  "therapy-areas",
+  "scientists",
+  "quality",
+  "regulatory",
+  "insights",
+  "downloads",
+  "contact",
+  "global-presence",
+  "partner-with-us",
+  "markets"
+];
 const eventPath = "/events/cphi-shanghai-2026/";
+
+const resourcePageMeta = {
+  quality: {
+    title: "Quality Systems for GMP API Manufacturing | Aurore Life Sciences",
+    description:
+      "Explore Aurore Life Sciences quality systems for GMP compliant API manufacturing, QA/QC, analytical infrastructure, audit readiness, and regulated-market documentation.",
+    name: "Quality"
+  },
+  regulatory: {
+    title: "Regulatory API Support | USDMF, CEP and Global Filings | Aurore Life Sciences",
+    description:
+      "Aurore Life Sciences supports regulated-market API programs with 122+ DMFs and global filings, USDMF, CEP, EDMF, ASMF, inspection readiness, and lifecycle documentation.",
+    name: "Regulatory"
+  },
+  insights: {
+    title: "Pharmaceutical API Insights and Market Intelligence | Aurore Life Sciences",
+    description:
+      "Read pharmaceutical API insights on supply chain reliability, API regulatory updates, CDMO trends, impurity control, and regulated-market readiness from Aurore Life Sciences.",
+    name: "Insights"
+  },
+  downloads: {
+    title: "API Product Brochures and Technical Resources | Aurore Life Sciences",
+    description:
+      "Request Aurore Life Sciences API product brochures, pharmaceutical API portfolio PDFs, facility overviews, technical datasheets, and regulatory documentation resources.",
+    name: "Downloads"
+  },
+  contact: {
+    title: "Contact Aurore Life Sciences | API RFQ and CDMO Enquiries",
+    description:
+      "Contact Aurore Life Sciences for API supplier enquiries, pharmaceutical manufacturing RFQs, CDMO discussions, technical documentation, and commercial support.",
+    name: "Contact"
+  },
+  "global-presence": {
+    title: "Global API Supplier and Export Footprint | Aurore Life Sciences",
+    description:
+      "Explore Aurore Life Sciences global API supply footprint across regulated and growth markets, pharmaceutical exports, regulatory filings, and logistics support.",
+    name: "Global Presence"
+  },
+  "partner-with-us": {
+    title: "Partner With Aurore | Pharmaceutical CDMO and API Supply Collaboration",
+    description:
+      "Partner with Aurore Life Sciences for pharmaceutical CDMO collaboration, API development, process scale-up, regulatory support, and strategic long-term supply.",
+    name: "Partner With Us"
+  }
+};
 
 function organizationSchema() {
   return {
@@ -79,6 +139,27 @@ function breadcrumbSchema(items) {
       name: item.name,
       item: `${baseUrl}${item.path}`
     }))
+  };
+}
+
+function webPageSchema(page, path) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: page.name,
+    url: `${baseUrl}${path}`,
+    description: page.description,
+    publisher: {
+      "@type": "Organization",
+      name: "Aurore Life Sciences Private Limited",
+      logo: { "@type": "ImageObject", url: absoluteUrl(logoUrl) }
+    },
+    about: [
+      "pharmaceutical API manufacturer",
+      "GMP compliant API supplier",
+      "regulated market APIs",
+      "pharmaceutical CDMO partnership"
+    ]
   };
 }
 
@@ -354,8 +435,31 @@ async function writePage(relativeDir, page) {
   await writeFile(path.join(pageDir, "index.html"), page, "utf8");
 }
 
+async function writeResourcePage(slug) {
+  const page = resourcePageMeta[slug];
+  const path = `/${slug}/`;
+  return writePage(
+    slug,
+    htmlPage({
+      title: page.title,
+      description: page.description,
+      canonicalPath: path,
+      pageType: "resourcePage",
+      pageSlug: slug,
+      schemas: [
+        organizationSchema(),
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: page.name, path }]),
+        webPageSchema(page, path),
+        ["quality", "regulatory", "contact"].includes(slug) ? faqSchema(capabilityFaqs) : null
+      ]
+    })
+  );
+}
+
 async function generatePages() {
   await Promise.all([...generatedRoots, "events"].map((dir) => rm(path.join(rootDir, dir), { recursive: true, force: true })));
+
+  await Promise.all(["quality", "downloads", "contact", "global-presence", "partner-with-us"].map((slug) => writeResourcePage(slug)));
 
   await writePage(
     "products",
@@ -527,14 +631,15 @@ async function generatePages() {
   await writePage(
     "regulatory",
     htmlPage({
-      title: "Regulatory Dashboard | Aurore Life Sciences",
-      description: "Aurore Life Sciences regulatory dashboard with DMF counts, approvals, inspection readiness, and buyer-focused quality FAQs.",
-      keywords: "Aurore regulatory dashboard, DMF count, pharma approvals, USFDA EDQM WHO COFEPRIS KFDA",
+      title: resourcePageMeta.regulatory.title,
+      description: resourcePageMeta.regulatory.description,
       canonicalPath: "/regulatory/",
-      pageType: "regulatory",
+      pageType: "resourcePage",
+      pageSlug: "regulatory",
       schemas: [
         organizationSchema(),
-        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Regulatory Dashboard", path: "/regulatory/" }]),
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Regulatory", path: "/regulatory/" }]),
+        webPageSchema(resourcePageMeta.regulatory, "/regulatory/"),
         faqSchema(capabilityFaqs)
       ]
     })
@@ -543,14 +648,15 @@ async function generatePages() {
   await writePage(
     "insights",
     htmlPage({
-      title: "Insights Hub | Aurore Life Sciences",
-      description: "Technical insights from Aurore Life Sciences on API filing strategy, impurity control, backward integration, and supplier qualification.",
-      keywords: "Aurore insights, technical API articles, filing strategy, supplier qualification",
+      title: resourcePageMeta.insights.title,
+      description: resourcePageMeta.insights.description,
       canonicalPath: "/insights/",
-      pageType: "insightIndex",
+      pageType: "resourcePage",
+      pageSlug: "insights",
       schemas: [
         organizationSchema(),
-        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Insights", path: "/insights/" }])
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Insights", path: "/insights/" }]),
+        webPageSchema(resourcePageMeta.insights, "/insights/")
       ]
     })
   );
@@ -625,8 +731,13 @@ async function generateSupportFiles() {
     ...facilities.map((facility) => `/facilities/${facility.slug}/`),
     ...therapyHubs.map((hub) => `/therapy-areas/${hub.slug}/`),
     "/scientists/",
+    "/quality/",
     "/regulatory/",
     "/insights/",
+    "/downloads/",
+    "/contact/",
+    "/global-presence/",
+    "/partner-with-us/",
     ...insights.map((insight) => `/insights/${insight.slug}/`),
     ...markets.map((market) => `/markets/${market.slug}/`)
   ];
@@ -634,7 +745,7 @@ async function generateSupportFiles() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allPaths
     .map((url) => `  <url><loc>${baseUrl}${url}</loc></url>`)
     .join("\n")}\n</urlset>\n`;
-  const robots = `User-agent: *\nAllow: /products/\nAllow: /intermediates/\nAllow: /insights/\nAllow: /facilities/\nAllow: /therapy-areas/\nAllow: /markets/\nDisallow: /admin\nDisallow: /tmp\nSitemap: ${baseUrl}/sitemap.xml\n`;
+  const robots = `User-agent: *\nAllow: /products/\nAllow: /intermediates/\nAllow: /quality/\nAllow: /regulatory/\nAllow: /insights/\nAllow: /downloads/\nAllow: /contact/\nAllow: /global-presence/\nAllow: /partner-with-us/\nAllow: /facilities/\nAllow: /therapy-areas/\nAllow: /markets/\nDisallow: /admin\nDisallow: /tmp\nSitemap: ${baseUrl}/sitemap.xml\n`;
 
   await writeFile(path.join(rootDir, "sitemap.xml"), sitemap, "utf8");
   await writeFile(path.join(rootDir, "robots.txt"), robots, "utf8");

@@ -8,7 +8,9 @@
 .portfolio-modal-open { overflow: hidden; }
 
 .portfolio-platform {
-  background: var(--soft);
+  background:
+    radial-gradient(circle at 88% 4%, rgba(0, 154, 68, 0.07), transparent 28%),
+    var(--soft);
   color: var(--ink);
   overflow-x: hidden;
 }
@@ -19,10 +21,11 @@
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(0, 34, 20, 0.9) 0%, rgba(0, 77, 40, 0.82) 48%, rgba(0, 154, 68, 0.58) 100%),
+    linear-gradient(90deg, rgba(0, 77, 40, 0.76) 0%, rgba(0, 107, 49, 0.56) 48%, rgba(0, 154, 68, 0.24) 100%),
+    linear-gradient(180deg, rgba(0, 77, 40, 0.14), rgba(0, 77, 40, 0.34)),
     url("/images/kazhipally.jpg") center / cover no-repeat,
-    radial-gradient(ellipse at 75% 15%, rgba(255, 196, 0, 0.18) 0%, transparent 38%),
-    radial-gradient(ellipse at 20% 85%, rgba(0, 100, 50, 0.4) 0%, transparent 40%),
+    radial-gradient(ellipse at 75% 15%, rgba(255, 196, 0, 0.16) 0%, transparent 38%),
+    radial-gradient(ellipse at 20% 85%, rgba(0, 154, 68, 0.28) 0%, transparent 40%),
     linear-gradient(135deg, #002a18 0%, #004d28 40%, #007838 75%, #009a44 100%);
   color: #fff;
 }
@@ -37,7 +40,7 @@
   background-size: 88px 88px, 120px 120px;
   pointer-events: none;
   mix-blend-mode: screen;
-  opacity: 0.75;
+  opacity: 0.42;
 }
 
 .portfolio-hero__inner {
@@ -96,7 +99,7 @@
 .portfolio-hero p {
   max-width: 580px;
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 17px;
   line-height: 1.72;
 }
@@ -120,9 +123,9 @@
 .portfolio-hero__visual div {
   min-width: 0;
   padding: 22px 20px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(20px);
   transition: background 200ms ease, border-color 200ms ease;
 }
@@ -142,7 +145,7 @@
 .portfolio-hero__visual span {
   display: block;
   margin-top: 7px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 12px;
   font-weight: 750;
   letter-spacing: 0.01em;
@@ -1060,7 +1063,9 @@
 
 .portfolio-final {
   padding: 96px 0;
-  background: linear-gradient(140deg, var(--green-deep) 0%, #006030 55%, var(--green) 100%);
+  background:
+    radial-gradient(circle at 82% 16%, rgba(255, 196, 0, 0.14), transparent 30%),
+    linear-gradient(140deg, var(--green-deep) 0%, #006030 55%, var(--green) 100%);
   color: #fff;
 }
 
@@ -1094,7 +1099,8 @@
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(0, 20, 12, 0.66);
+  background: rgba(0, 77, 40, 0.5);
+  backdrop-filter: blur(3px);
   cursor: default;
 }
 
@@ -1105,7 +1111,7 @@
   overflow: auto;
   border-radius: 12px;
   background: var(--surface);
-  box-shadow: 0 40px 120px rgba(0, 20, 10, 0.38);
+  box-shadow: 0 40px 120px rgba(0, 77, 40, 0.26);
 }
 
 .portfolio-modal__close {
@@ -1134,7 +1140,9 @@
 
 .portfolio-modal__header {
   padding: 38px 44px 34px;
-  background: linear-gradient(135deg, var(--green-deep) 0%, #006030 100%);
+  background:
+    radial-gradient(circle at 86% 8%, rgba(255, 196, 0, 0.14), transparent 30%),
+    linear-gradient(135deg, var(--green-deep) 0%, #006030 72%, var(--green-dark) 100%);
   color: #fff;
 }
 
@@ -1304,7 +1312,7 @@
 
 .portfolio-rfq {
   padding: 36px 32px;
-  background: var(--soft);
+  background: var(--gradient-enterprise-soft);
   display: flex;
   flex-direction: column;
   gap: 0;

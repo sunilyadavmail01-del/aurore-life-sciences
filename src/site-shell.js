@@ -17,13 +17,15 @@ const staticNavHref = {
   manufacturing: "/facilities/jeedimetla/",
   rnd: "/scientists/",
   insights: "/insights/",
-  contact: "/#contact",
+  contact: "/contact/",
   careers: "/#careers"
 };
 
+const staticOnlyNavIds = new Set(["products", "insights", "contact"]);
+
 function renderNavItem(item, activePage, isStaticPage) {
   const active = activePage === item.id ? "active" : "";
-  if (isStaticPage || item.id === "products") {
+  if (isStaticPage || staticOnlyNavIds.has(item.id)) {
     return `<a class="nav-link ${active}" href="${staticNavHref[item.id]}">${item.label}</a>`;
   }
   return `<button class="nav-link ${active}" data-page="${item.id}">${item.label}</button>`;
@@ -31,9 +33,9 @@ function renderNavItem(item, activePage, isStaticPage) {
 
 function renderMobileRfq(isStaticPage) {
   if (isStaticPage) {
-    return `<a class="nav-link nav-link--rfq-mobile" href="/#contact">Request RFQ</a>`;
+    return `<a class="nav-link nav-link--rfq-mobile" href="/contact/#rfq">Request RFQ</a>`;
   }
-  return pageButton("Request RFQ", "contact", "nav-link nav-link--rfq-mobile");
+  return `<a class="nav-link nav-link--rfq-mobile" href="/contact/#rfq">Request RFQ</a>`;
 }
 
 export function renderHeader({ activePage = "", isApiDetail = false, isStaticPage = false } = {}) {
@@ -64,7 +66,7 @@ export function renderHeader({ activePage = "", isApiDetail = false, isStaticPag
             ${navItems.map((item) => renderNavItem(item, activePage, staticContext)).join("")}
             ${renderMobileRfq(staticContext)}
           </nav>
-          ${staticContext ? `<a class="btn btn-primary nav-cta" href="/#contact">Request RFQ</a>` : pageButton("Request RFQ", "contact", "btn btn-primary nav-cta")}
+          <a class="btn btn-primary nav-cta" href="/contact/#rfq">Request RFQ</a>
         </div>
       </div>
     </header>`;
@@ -95,13 +97,13 @@ export function renderFooter({ isApiDetail = false, isStaticPage = false } = {})
     {
       title: "Resources",
       links: [
-        { label: "Quality", href: "/regulatory/" },
+        { label: "Quality", href: "/quality/" },
         { label: "Regulatory", href: "/regulatory/" },
         { label: "Insights", href: "/insights/" },
-        { label: "Downloads", href: "/#contact" },
-        { label: "Contact", href: "/#contact" },
-        { label: "Global Presence", href: "/markets/north-america/" },
-        { label: "Partner With Us", href: "/#contact" }
+        { label: "Downloads", href: "/downloads/" },
+        { label: "Contact", href: "/contact/" },
+        { label: "Global Presence", href: "/global-presence/" },
+        { label: "Partner With Us", href: "/partner-with-us/" }
       ]
     }
   ];
@@ -172,7 +174,7 @@ export function renderFooter({ isApiDetail = false, isStaticPage = false } = {})
         </div>
         <div class="shell footer-bottom__legal">
           <a href="/regulatory/">Quality & regulatory</a>
-          <a href="/#contact">Business enquiries</a>
+          <a href="/contact/">Business enquiries</a>
           <a href="/sitemap.xml">Sitemap</a>
         </div>
       </div>
