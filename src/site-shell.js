@@ -23,7 +23,7 @@ const staticNavHref = {
 
 function renderNavItem(item, activePage, isStaticPage) {
   const active = activePage === item.id ? "active" : "";
-  if (isStaticPage) {
+  if (isStaticPage || item.id === "products") {
     return `<a class="nav-link ${active}" href="${staticNavHref[item.id]}">${item.label}</a>`;
   }
   return `<button class="nav-link ${active}" data-page="${item.id}">${item.label}</button>`;
@@ -226,7 +226,7 @@ function confirmationMarkup(form, formData) {
     <span class="form-note-title">Request staged: ${escapeHtml(molecule)}</span>
     <span>${escapeHtml(requestType)}${company ? ` for ${escapeHtml(company)}` : ""} is ready for ${escapeHtml(route)} review.</span>
     ${market ? `<span>Context preserved: ${escapeHtml(market)}.</span>` : ""}
-    <span class="form-note-ref">Demo reference ${escapeHtml(reference)}</span>`;
+    <span class="form-note-ref">Reference ${escapeHtml(reference)}</span>`;
 }
 
 export function attachCommonUi() {

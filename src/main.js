@@ -36,11 +36,8 @@ let activePage = "home";
 let productQuery = "";
 let productTherapy = "All categories";
 
-// SEO-tightened SPA route titles. Each is ≤60 chars (the SERP truncation
-// boundary), keyword-first, brand last. The `home`, `products`, and
-// `insights` entries deliberately mirror the static HTML titles in
-// index.html / products/index.html / insights/index.html so navigating
-// between SPA and static contexts doesn't flicker the document.title.
+// Route titles stay concise so client-side navigation keeps metadata aligned
+// with static pages.
 const titleMap = {
   home:          "API Manufacturer India | Aurore Life Sciences",
   about:         "About Aurore | Pure-play API Manufacturer India",
@@ -121,6 +118,10 @@ function isKnownPage(page) {
 }
 
 function setPage(page) {
+  if (page === "products") {
+    window.location.href = "/products/";
+    return;
+  }
   activePage = isKnownPage(page) ? page : "home";
   window.location.hash = activePage;
   document.title = titleMap[activePage];
@@ -515,10 +516,10 @@ function renderAbout() {
           </div>
           <div class="ab-authority-grid">
             ${[
-              { num: regulatoryDashboard.dmfCount, label: "DMFs Filed",        sub: "Quarterly dashboard with approvals, audit history, and market-specific trust signals.", href: "/regulatory/" },
-              { num: String(scientists.length),    label: "Scientist Profiles", sub: "Scientific leadership authority pages for E-E-A-T and technical buyer confidence.",    href: "/scientists/" },
+              { num: regulatoryDashboard.dmfCount, label: "DMFs Filed",        sub: "Quarterly dashboard with approvals, inspection history, and market-specific quality context.", href: "/regulatory/" },
+              { num: String(scientists.length),    label: "Scientist Profiles", sub: "Scientific leadership profiles for technical buyer confidence.",    href: "/scientists/" },
               { num: String(facilities.length),    label: "GMP Facilities",     sub: "Per-facility pages with capacity, certifications, and inspection narrative.",           href: "/facilities/jeedimetla/" },
-              { num: String(markets.length),       label: "Market Pages",       sub: "Regional landing pages for long-tail SEO and buyer-specific procurement pathways.",     href: "/markets/north-america/" }
+              { num: String(markets.length),       label: "Market Pages",       sub: "Regional pages for buyer-specific procurement pathways.",     href: "/markets/north-america/" }
             ].map(({ num, label, sub, href }, i) => `
               <a class="ab-authority-card reveal-up" href="${href}" style="--delay:${0.09 * i}s">
                 <span class="ab-authority-card__num">${num}</span>
@@ -757,7 +758,7 @@ function renderPeptideHero() {
           </div>
         </aside>
       </div>
-      <div class="pep-hero__trust" aria-label="Peptide platform trust signals">
+      <div class="pep-hero__trust" aria-label="Peptide platform quality indicators">
         <div class="shell pep-hero__trust-inner">
           <span>Regulated market orientation</span>
           <span>Process chemistry-led engagement</span>
@@ -893,7 +894,7 @@ function renderPeptides() {
           ${renderPeptideSectionHead(
             "Analytical and documentation support",
             "Built around the evidence customers need to qualify a partner.",
-            "Enterprise pharmaceutical buyers evaluate repeatability, documentation quality, regulatory context, and escalation paths. Peptide enquiries are routed with those trust signals visible."
+            "Enterprise pharmaceutical buyers evaluate repeatability, documentation quality, regulatory context, and escalation paths. Peptide enquiries are routed with those quality indicators visible."
           )}
           <div class="pep-proof-grid">
             ${[
@@ -999,7 +1000,7 @@ function renderInsights() {
             .join("")}
         </div>
         <div class="shell section-head section-top-gap">
-          <span class="eyebrow">Internal linking</span>
+          <span class="eyebrow">Guided next steps</span>
           <h2>Move from article to qualification path</h2>
           <p>Each insight connects directly into product pages, therapy hubs, facilities, and RFQ actions so buyers can keep moving after they finish reading.</p>
           <div class="hero-actions">
@@ -1008,7 +1009,7 @@ function renderInsights() {
           </div>
         </div>
         <div class="shell section-head section-top-gap">
-          <span class="eyebrow">Editorial hub</span>
+          <span class="eyebrow">Insights hub</span>
           <h2>Browse the full insights section</h2>
           <a class="btn btn-secondary" href="/insights/">Open insights hub</a>
         </div>
@@ -1033,7 +1034,7 @@ function renderCareers() {
           </div>
           <aside class="detail-panel">
             <h3>Career enquiries</h3>
-            <p>For the demo, career interest routes through the contact page until a dedicated ATS or job board is connected.</p>
+            <p>Career enquiries are routed through the contact page so the right team can respond with current opportunities and next steps.</p>
             ${pageButton("Contact HR", "contact", "btn btn-primary")}
           </aside>
         </div>
@@ -1423,13 +1424,22 @@ function render() {
 
 window.addEventListener("hashchange", () => {
   const page = window.location.hash.replace("#", "");
+  if (page === "products") {
+    window.location.href = "/products/";
+    return;
+  }
   activePage = isKnownPage(page) ? page : "home";
   document.title = titleMap[activePage];
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-activePage = isKnownPage(window.location.hash.replace("#", "")) ? window.location.hash.replace("#", "") : "home";
-document.title = titleMap[activePage];
-render();
-window.scrollTo({ top: 0 });
+const initialHashPage = window.location.hash.replace("#", "");
+if (initialHashPage === "products") {
+  window.location.replace("/products/");
+} else {
+  activePage = isKnownPage(initialHashPage) ? initialHashPage : "home";
+  document.title = titleMap[activePage];
+  render();
+  window.scrollTo({ top: 0 });
+}

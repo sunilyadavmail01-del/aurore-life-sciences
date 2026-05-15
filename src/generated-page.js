@@ -115,49 +115,12 @@ function attachCapabilityFinder() {
 function renderProductsIndexPage() {
   pageShell(
     "products",
-    `
-      <main>
-        <section class="page-hero api-hero">
-          <div class="shell">
-            <span class="eyebrow">API library</span>
-            <h1>Individually indexable API portfolio</h1>
-            <p>Each product has a supplier-ready page with CAS, filing context, facility linkage, related APIs, and clear conversion paths for regulatory and technical buyers.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="/regulatory/">Request RFQ</a>
-              <a class="btn btn-secondary" href="/scientists/">Connect with a Scientist</a>
-            </div>
-          </div>
-        </section>
-        ${renderApprovals(approvals)}
-        ${capabilityFinderMarkup()}
-        <section class="section">
-          <div class="shell split api-split">
-            <div>
-              <span class="eyebrow">DMF library</span>
-              <h2>Gated request flow for DMF, COA, and capability packs</h2>
-              <p>Technical documentation requests are routed with molecule, market, and qualification context so regulatory teams can respond with the right pack.</p>
-              <div class="proof-grid">
-                <article><h3>Request RFQ</h3><p>Trigger regulatory documentation review for a specific molecule or market.</p></article>
-                <article><h3>Request COA / COE</h3><p>Signal quality-document interest without exposing sensitive files publicly.</p></article>
-                <article><h3>Request plant tour</h3><p>Invite virtual or in-person facility qualification discussions.</p></article>
-                <article><h3>Request scientist meeting</h3><p>Route technical questions directly to the scientific leadership structure.</p></article>
-              </div>
-            </div>
-            <form class="rfq-form" data-form="rfq" data-context="API documentation pack" data-request-type="RFQ / COA documentation pack" data-route="Regulatory Affairs document review" data-reference-prefix="RFQ">
-              <h2>Request technical documentation</h2>
-              <label><span>Company name</span><input name="company" required placeholder="Your pharmaceutical company" /></label>
-              <label><span>Email</span><input type="email" name="email" required placeholder="name@company.com" /></label>
-              <label><span>API / therapy focus</span><input name="api_focus" placeholder="Acyclovir, antiretroviral portfolio, anti-diabetic range..." /></label>
-              <label><span>Requested pack</span><input name="requested_pack" placeholder="DMF, COA, capability brochure, plant tour..." /></label>
-              <label><span>Notes</span><textarea name="notes" placeholder="Market, timeline, qualification stage, required approvals..."></textarea></label>
-              <button class="btn btn-primary" type="submit">Request RFQ pack</button>
-              <strong class="form-note" role="status" tabindex="-1" hidden></strong>
-            </form>
-          </div>
-        </section>
-      </main>`
+    `<div id="portfolio-root"></div>`
   );
-  attachCapabilityFinder();
+  import("./portfolio/PortfolioApp.jsx").then(({ mountPortfolioApp }) => {
+    const root = document.querySelector("#portfolio-root");
+    if (root) mountPortfolioApp(root);
+  });
 }
 
 function renderCphiShanghaiPage() {
@@ -355,7 +318,7 @@ function renderIntermediatesIndexPage() {
         <section class="page-hero api-hero">
           <div class="shell">
             <span class="eyebrow">Intermediate library</span>
-            <h1>Indexable intermediates for API sourcing</h1>
+            <h1>Intermediates for API sourcing</h1>
             <p>Aurore's product list includes ${intermediates.length} intermediates across ${intermediateFamilies.length} API families, with chemical names and CAS numbers captured from the official product PDF.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="/#contact">Request RFQ</a>
@@ -496,7 +459,7 @@ function renderApiPage() {
         <section class="section muted-section">
           <div class="shell split api-split">
             <div>
-              <span class="eyebrow">Linked architecture</span>
+              <span class="eyebrow">Connected portfolio</span>
               <h2>Designed to interlink the whole buyer journey</h2>
               <table class="spec-table">
                 <tbody>
@@ -523,7 +486,7 @@ function renderApiPage() {
           <div class="shell section-head">
             <span class="eyebrow">Related APIs</span>
             <h2>Continue through the therapy portfolio</h2>
-            <p>Every API page links to related products so the product architecture behaves like a true indexable library instead of a dead-end datasheet.</p>
+            <p>Every API page links to related products, technical context, and enquiry paths so buyers can continue evaluation without losing momentum.</p>
           </div>
           <div class="shell product-grid">
             ${relatedProducts.map((item) => renderApiCard(item)).join("")}
@@ -574,7 +537,7 @@ function renderFacilityPage() {
         <section class="section muted-section">
           <div class="shell split api-split">
             <div>
-              <span class="eyebrow">Audit-ready story</span>
+              <span class="eyebrow">Qualification support</span>
               <h2>What a procurement team expects to see</h2>
               <ul class="simple-list">
                 ${facility.auditHistory.map((item) => `<li>${item}</li>`).join("")}
@@ -609,7 +572,7 @@ function renderScientistsPage() {
       <main>
         <section class="page-hero api-hero">
           <div class="shell">
-            <span class="eyebrow">E-E-A-T</span>
+            <span class="eyebrow">Scientific leadership</span>
             <h1>Meet our scientific leadership</h1>
             <p>Aurore's scientific leadership supports route scouting, impurity strategy, analytical validation, technology transfer, and regulated-market qualification discussions.</p>
             <div class="hero-actions">
@@ -654,9 +617,9 @@ function renderRegulatoryPage() {
       <main>
         <section class="page-hero api-hero">
           <div class="shell">
-            <span class="eyebrow">Trust signals</span>
+            <span class="eyebrow">Regulatory confidence</span>
             <h1>Regulatory dashboard</h1>
-            <p>A public-facing trust page brings together DMF counts, certifications, inspections, quality systems, and capability FAQs for buyer due diligence.</p>
+            <p>Aurore brings together DMF counts, certifications, inspections, quality systems, and capability FAQs to support buyer due diligence.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="/products/">Request RFQ</a>
               <a class="btn btn-secondary" href="/scientists/">Connect with a Scientist</a>
@@ -673,7 +636,7 @@ function renderRegulatoryPage() {
           </div>
           <div class="shell split api-split section-top-gap">
             <div>
-              <span class="eyebrow">Audit narrative</span>
+              <span class="eyebrow">Inspection record</span>
               <h2>Inspection and certification story</h2>
               <ul class="simple-list">
                 ${regulatoryDashboard.inspections.map((item) => `<li>${item}</li>`).join("")}
@@ -723,7 +686,7 @@ function renderTherapyPage() {
         <section class="section muted-section">
           <div class="shell section-head">
             <span class="eyebrow">Related insights</span>
-            <h2>Internal links that support long-tail authority</h2>
+            <h2>Related pages for deeper evaluation</h2>
           </div>
           <div class="shell card-grid three">
             ${relatedInsights
@@ -896,7 +859,7 @@ function renderNotFound(activePage) {
           <div class="shell">
             <span class="eyebrow">Page not found</span>
             <h1>This page is not available yet</h1>
-            <p>Return to the library or home page to keep exploring the Aurore website rebuild.</p>
+            <p>Return to the library or home page to keep exploring Aurore Life Sciences.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="/products/">Browse APIs</a>
               <a class="btn btn-secondary" href="/">Back home</a>

@@ -140,6 +140,39 @@ function intermediateFamilySchema(family) {
   };
 }
 
+function portfolioItemListSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Aurore Life Sciences API and intermediates portfolio",
+    description: "Searchable API and intermediate portfolio for regulated-market pharmaceutical sourcing.",
+    numberOfItems: products.length + intermediates.length,
+    itemListElement: [
+      ...products.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${baseUrl}${apiHref(product.slug)}`,
+        item: {
+          "@type": "Product",
+          name: product.name,
+          sku: product.casNumber,
+          category: product.category
+        }
+      })),
+      ...intermediates.map((intermediate, index) => ({
+        "@type": "ListItem",
+        position: products.length + index + 1,
+        url: `${baseUrl}${intermediateHref(intermediate.slug.replace(/-\d+$/, ""))}`,
+        item: {
+          "@type": "ChemicalSubstance",
+          name: intermediate.chemicalName,
+          identifier: intermediate.casNumber
+        }
+      }))
+    ]
+  };
+}
+
 function articleSchema({ title, excerpt, author, slug, datePublished, dateModified, image }) {
   return {
     "@context": "https://schema.org",
@@ -328,11 +361,16 @@ async function generatePages() {
     "products",
     htmlPage({
       title: "API Library | Aurore Life Sciences",
-      description: "Browse Aurore Life Sciences' API library with individually indexable product pages, RFQ flows, and capability filters.",
+      description: "Browse Aurore Life Sciences' API library with detailed product pages, RFQ flows, and capability filters.",
       keywords: "Aurore API library, API manufacturer India, RFQ, pharmaceutical APIs",
       canonicalPath: "/products/",
       pageType: "productIndex",
-      schemas: [organizationSchema(), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Products", path: "/products/" }]), faqSchema(capabilityFaqs)]
+      schemas: [
+        organizationSchema(),
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Products", path: "/products/" }]),
+        portfolioItemListSchema(),
+        faqSchema(capabilityFaqs)
+      ]
     })
   );
 
@@ -427,7 +465,7 @@ async function generatePages() {
         path.join("facilities", facility.slug),
         htmlPage({
           title: `${facility.name} Facility | Aurore Life Sciences`,
-          description: `${facility.name} facility at Aurore Life Sciences: capacity, certifications, audit story, and relevant API manufacturing capabilities.`,
+          description: `${facility.name} facility at Aurore Life Sciences: capacity, certifications, inspection readiness, and relevant API manufacturing capabilities.`,
           keywords: `${facility.name} facility, Aurore manufacturing, API facility Hyderabad, GMP site`,
           canonicalPath: `/facilities/${facility.slug}/`,
           pageType: "facility",
@@ -475,7 +513,7 @@ async function generatePages() {
     "scientists",
     htmlPage({
       title: "Scientific Leadership | Aurore Life Sciences",
-      description: "Scientific leadership structure for Aurore Life Sciences, featuring doctoral and R&D expertise scaffolding for the rebuilt API website.",
+      description: "Scientific leadership at Aurore Life Sciences, featuring doctoral and R&D expertise for API development, analytical science, and regulated-market support.",
       keywords: "Aurore scientists, API experts, pharma R&D leadership, scientific leadership",
       canonicalPath: "/scientists/",
       pageType: "scientists",
@@ -490,7 +528,7 @@ async function generatePages() {
     "regulatory",
     htmlPage({
       title: "Regulatory Dashboard | Aurore Life Sciences",
-      description: "Aurore Life Sciences regulatory dashboard with DMF counts, approvals, audit-facing trust signals, and FAQ-driven SEO structure.",
+      description: "Aurore Life Sciences regulatory dashboard with DMF counts, approvals, inspection readiness, and buyer-focused quality FAQs.",
       keywords: "Aurore regulatory dashboard, DMF count, pharma approvals, USFDA EDQM WHO COFEPRIS KFDA",
       canonicalPath: "/regulatory/",
       pageType: "regulatory",
@@ -506,8 +544,8 @@ async function generatePages() {
     "insights",
     htmlPage({
       title: "Insights Hub | Aurore Life Sciences",
-      description: "Technical insights, filing strategy content, and editorial authority pages for the Aurore Life Sciences website rebuild.",
-      keywords: "Aurore insights, pharma SEO content, technical API articles, filing strategy",
+      description: "Technical insights from Aurore Life Sciences on API filing strategy, impurity control, backward integration, and supplier qualification.",
+      keywords: "Aurore insights, technical API articles, filing strategy, supplier qualification",
       canonicalPath: "/insights/",
       pageType: "insightIndex",
       schemas: [

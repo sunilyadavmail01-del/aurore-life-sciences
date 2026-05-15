@@ -17,7 +17,7 @@ if (!product) {
           <span class="eyebrow">API library</span>
           <h1>API page not found</h1>
           <p>The requested molecule page is not available yet. Return to the portfolio to browse the available API detail pages.</p>
-          <a class="btn btn-secondary" href="/#products">Back to products</a>
+          <a class="btn btn-secondary" href="/products/">Back to products</a>
         </div>
       </section>
     </main>
@@ -26,7 +26,7 @@ if (!product) {
 } else {
   document.title = `${product.name} API Supplier | Aurore Life Sciences`;
   const relatedProducts = products.filter((candidate) => candidate.category === product.category && candidate.slug !== product.slug).slice(0, 3);
-  const breadcrumb = `<a href="/">Home</a><span>/</span><a href="/#products">Products</a><span>/</span><strong>${product.name}</strong>`;
+  const breadcrumb = `<a href="/">Home</a><span>/</span><a href="/products/">Products</a><span>/</span><strong>${product.name}</strong>`;
 
   app.innerHTML = `
     ${renderHeader({ activePage: "products", isApiDetail: true })}
@@ -39,7 +39,7 @@ if (!product) {
           <p>${product.summary}</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="/?molecule=${encodeURIComponent(product.slug)}#contact">Request RFQ</a>
-            <a class="btn btn-secondary" href="/#products">Back to API library</a>
+            <a class="btn btn-secondary" href="/products/">Back to API library</a>
           </div>
         </div>
       </section>
@@ -99,7 +99,7 @@ if (!product) {
         <div class="shell section-head">
           <span class="eyebrow">Related APIs</span>
           <h2>More in ${product.category}</h2>
-          <p>Cross-linking similar molecules gives the portfolio a more indexable structure and makes the library easier for buyers to browse.</p>
+          <p>Related molecules help buyers compare options across the portfolio and continue sourcing conversations with the right technical context.</p>
         </div>
         <div class="shell product-grid">
           ${relatedProducts

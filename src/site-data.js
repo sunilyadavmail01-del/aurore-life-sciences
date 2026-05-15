@@ -221,7 +221,7 @@ const rawProducts = [
     category: "Anti-Diabetic",
     filings: "Commercial",
     capacity: "20 MT annually",
-    summary: "Empagliflozin contributes to a diabetes-focused API lineup with commercial readiness and procurement-friendly presentation.",
+    summary: "Empagliflozin contributes to a diabetes-focused API lineup with commercial readiness and procurement-friendly detail.",
     casNumber: "864070-44-0",
     formula: "C23H27ClO7",
     dosageForms: "Oral solid dosage support",
@@ -445,7 +445,7 @@ const rawProducts = [
     category: "Antiviral",
     filings: "Brazil DMF, CEP/EDMF, Iran DMF, Singapore DMF, TGA DMF, USDMF",
     capacity: "50 MT annually",
-    summary: "Valacyclovir HCL is one of the stronger examples for an individually indexable page because it combines broad filing depth with meaningful commercial capacity.",
+    summary: "Valacyclovir HCL combines broad filing depth with meaningful commercial capacity for regulated-market antiviral sourcing.",
     casNumber: "124832-27-5",
     formula: "C13H21N6O4Cl",
     dosageForms: "Oral antiviral dosage support",
@@ -453,7 +453,7 @@ const rawProducts = [
     highlights: [
       "Broad filing coverage across major export markets",
       "Commercial antiviral capacity suited for long-term planning",
-      "Strong candidate for SEO-oriented molecule landing pages"
+      "Strong candidate for molecule-specific sourcing discussions"
     ]
   }
 ];
@@ -793,7 +793,7 @@ export const insights = [
         heading: "Where multi-market APIs create an advantage",
         paragraphs: [
           "High-volume APIs such as Amlodipine, Celecoxib, and Levetiracetam show why filing breadth matters. A buyer may begin with one geography, but commercial teams often need optionality for additional markets, tenders, or lifecycle extensions. A supplier with a broader documentation footprint can reduce the friction of adding markets later.",
-          "For the CTO presentation, this article also demonstrates the role an insights hub can play in the website architecture: regulatory education can link directly into product pages, therapy hubs, and the regulatory dashboard, turning a general buyer question into a guided qualification path."
+          "A well-structured insights hub helps regulatory education link directly into product pages, therapy hubs, and the regulatory dashboard, turning a general buyer question into a guided qualification path."
         ]
       }
     ],
@@ -843,7 +843,7 @@ export const insights = [
         heading: "How integrated capability supports lifecycle supply",
         paragraphs: [
           "The commercial benefit of route control is not limited to first supply. Integrated process understanding can support yield improvement, impurity control, alternate raw-material qualification, and faster technical response when customer requirements change. It also gives quality and regulatory teams a clearer basis for assessing impact when changes are proposed.",
-          "Aurore's site network and intermediate architecture are positioned to make those discussions more concrete. A buyer can move from a product page into relevant intermediate families, facility pages, and the RFQ route, which makes the website behave like a qualification tool rather than a static brochure."
+          "Aurore's site network and intermediate portfolio are positioned to make those discussions more concrete. A buyer can move from a product page into relevant intermediate families, facility pages, and the RFQ route, creating a clearer qualification path for technical and procurement review."
         ]
       }
     ],

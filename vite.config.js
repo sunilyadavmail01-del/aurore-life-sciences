@@ -2,6 +2,7 @@ import { readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
@@ -32,10 +33,10 @@ function collectHtmlEntries(dir = rootDir, entries = {}) {
 }
 
 export default defineConfig({
+  plugins: [react()],
   build: {
     rollupOptions: {
       input: collectHtmlEntries()
     }
   }
 });
-
